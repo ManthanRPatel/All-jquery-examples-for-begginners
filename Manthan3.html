@@ -1,0 +1,23 @@
+<html>
+<head></head>
+<body>
+<h1>Maximum 15 characters:</h1>
+
+
+<textarea id="txt" placeholder="Enter text" maxlength="15"></textarea>
+<p id="demo">15</p>Characters Remaining..
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+var maxLength = 15;
+$('textarea').keyup(function(){
+    var txtlen= maxLength - $(this).val().length;
+    $("#demo").text(txtlen);
+});
+
+})
+</script>
+</html>

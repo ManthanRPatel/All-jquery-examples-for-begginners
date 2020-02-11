@@ -1,0 +1,16 @@
+<html>
+<head></head>
+<body>
+<h1>Maximum 15 characters:</h1>
+<textarea id="txt" placeholder="Enter text" maxlength="15" onkeydown="maxText()"></textarea>
+<p id="demo">15</p>Characters Remaining..
+</body>
+<script>
+    var maxText = () =>{
+      var maxLength = 15;
+      let txtlen = maxLength- document.getElementById("txt").value.length;
+      document.getElementById("demo").innerHTML=txtlen;
+    };
+</script>
+
+</html>

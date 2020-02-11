@@ -1,0 +1,227 @@
+<htmL>
+<head>
+<title>Manthan Patel</title>
+</head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+</style>
+    <body>
+       <h1>Status Master</h1>
+       <button type="button">Add</button>
+       <button id="eventable" onclick="evenTable()" >Even</button>
+       <button type="button" id="counter">COUNT</button>
+       <button type="button" id="editAll">Edit</button>
+       <button type="button" id="deleteAll">Delete</button>
+        <br><br>
+    <table id="myTable">
+    <thead>
+    <tr>
+        <th><input type="checkbox" name="sample" class="selectall"/></th>
+        <th>Index</th>
+        <th>Student Name</th>
+        <th>Roll No.</th>
+        <th>Class</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody id="tableBody">
+    <tr>
+        <td><input type="checkbox" name="sample[]"/></td>
+        <td class="indexTable"></td>
+        <td>Patel Manthan</td>
+        <td>17</td>
+        <td>A</td>
+        <td>
+            <button type="button" class="updateRow">update</button>
+            <button type="button" class="deleteRow" >Delete</button>
+            <button type="button" class="clone">Duplicate</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="sample[]"/></td>
+        <td class="indexTable">dfgfdg</td>
+        <td>Shar Kishan</td>
+        <td>1</td>
+        <td>B</td>
+        <td>
+            <button type="button" class="updateRow">update</button>
+            <button type="button" class="deleteRow">Delete</button>
+            <button type="button" class="clone">Duplicate</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="sample[]"/></td>
+        <td class="indexTable"></td>
+        <td>Marwadi Sanket</td>
+        <td>21</td>
+        <td>C</td>
+        <td>
+            <button type="button" class="updateRow">update</button>
+            <button type="button" class="deleteRow">Delete</button>
+            <button type="button" class="clone">Duplicate</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="sample[]"/></td>
+        <td class="indexTable"></td>
+        <td>Gandhi Mayur</td>
+        <td>231</td>
+        <td>A</td>
+        <td>
+            <button type="button" class="updateRow">update</button>
+            <button type="button" class="deleteRow">Delete</button>
+            <button type="button" class="clone">Duplicate</button>
+        </td>
+    </tr>
+    </tbody>
+
+    </table>
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script>
+
+var evenTable = () => {
+    var table = document.getElementById("myTable");   
+    var rows = table.getElementsByTagName("tr");   
+    for(i = 0; i < rows.length; i++){            
+      if(i % 2 == 0){ 
+        rows[i].style.backgroundColor = "grey";
+      }else{
+        rows[i].style.backgroundColor = "white";
+      }       
+    } 
+}
+
+
+var indexTheTable = () => {
+    var i = 1;
+    var tablebody = document.getElementById("tableBody");
+    var xy = tablebody.getElementsByTagName("tr");
+    for(i = 0 ; i <= xy.length; i++){
+    var txtr = tablebody.getElementsByTagName("tr")[i];
+    var nn = txtr.getElementsByClassName("indexTable");
+    console.log(txtr);
+    console.log(nn);
+
+}}
+indexTheTable();
+
+$(document).ready(function(){
+
+// indexingTable();
+//     function indexingTable(){
+//         var i = 1;
+//         var lengthTable = $("#myTable tbody tr").length;
+//         for(i = 0 ; i <= lengthTable; i++){
+//         var x ="tr:eq("+i+")";
+//         $("#myTable tbody").find(x).find('.indexTable').text(i+1);
+//     }
+// };
+    
+                  
+    
+// table number ordering...
+$('table#myTable').on('change',function(){
+    var i = 1;
+    lengthTable = $("#myTable tbody tr").length;
+    for(i=1;i<=lengthTable;i++){
+    var x ="tr:eq("+i+")";
+    $("#myTable tbody").find(x).text(i);
+    }
+});
+     
+    
+    // for select ALl
+      $('.selectall').click(function() {
+        if ($(this).is(':checked')) {
+            $('table#myTable input:checkbox').attr('checked', true);
+        } else {
+            $('table#myTable input:checkbox').attr('checked', false);
+        }
+    });
+    
+    
+    // for delete Alert
+    $('#deleteAll').click(function(){
+      var checkedAll = $('table#myTable input[type=checkbox]:checked').length;
+      if(checkedAll > 1){
+        alert("Multiple Records Can't Be Deleted");
+      }else if(checkedAll >= 1){
+        alert("Single Records can be deleted");
+      }else{
+        $('tbody tr').remove();
+        alert("Please Select the rows");
+      }
+    });
+    
+    // for update all button
+    $('#editAll').click(function(){
+      var upcheck = $('table#myTable input[type=checkbox]:checked').length;
+      if(upcheck > 1){
+        alert("You can't update multiple rows");
+      }else if(upcheck < 1){
+        alert("select Any row");
+      }else{
+        alert("You Can Upadte it");
+      }
+    })
+    
+    
+    
+    //count row and column
+    $('#counter').click(function(){
+    var TotalCol = $("table#myTable thead th").length;
+    var TotalRow= $("tbody tr").length;
+    alert("Total Column are:"+TotalCol+" && Total rows are:"+TotalRow);
+    });
+    
+    
+    // on delete check it and color change
+      $(".deleteRow").click(function(){
+                // alert("delete button click change color for row one");
+                $(this).closest('tr').css("background-color","green");
+                $(this).parent().parent().find('input:checkbox').attr('checked', true);
+                if (confirm("Are you Sure you want to delete:")) {
+                  $(this).parent().parent().remove();
+                  indexingTable();
+                }else{
+                  alert("You pressed cancel!");
+                  }
+    });
+    
+    
+    
+// duplicate
+$('.clone').click(function(){
+var x = $(this).parent().parent().clone().css({"background-color":"white"});
+x.find('input:checkbox').attr('checked', false);
+x.appendTo('tbody');
+indexingTable();
+})
+    
+    
+    
+    // updateRowate show result
+    $('.updateRow').click(function(){
+      var NameOfRow = $(this).parent().parent().find('td:eq(2)').text();
+      var rollOfRow = $(this).parent().parent().find('td:eq(3)').text();
+      var classOfRow = $(this).parent().parent().find('td:eq(4)').text();
+      alert("Name is:  "+NameOfRow+",, Roll No. is: "+rollOfRow+",, Class is "+classOfRow);
+    });
+    
+    
+    });
+    </script>
+    </htmL>

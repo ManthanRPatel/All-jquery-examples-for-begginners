@@ -1,0 +1,57 @@
+<htmL>
+<head></head>
+<body>
+    <h1>***Subjects:::</h1>
+    <input type="text" name="color" id="sub" placeholder="Enter to add" />
+    <button id="addColor" onclick="addValue()">Add</button>
+    <button id="removeAll">Remove All</button>
+    <br><br>
+    <select id="mySelect" name="color">
+        <option disabled>Select subject</option>
+        <option value="Maths">Maths</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Physics">Physics</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Environment">Environment</option>
+      </select>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+//to show
+    $("select#mySelect").change(function(){
+        var selected = $(this).children("option:selected").val();
+        alert("You have selected the Subject - " + selected);
+    });
+
+//diabled
+$(document).on('change','#mySelect',function(){
+    $('option', this).not(':selected').attr('disabled',true);
+})
+
+// // remove all value
+$('#removeAll').click(function(){
+    $('#mySelect').empty();
+});
+
+// set 1st to be selelected
+$('#mySelect option:eq(1)').prop('selected',true);
+
+
+});
+
+
+
+// to add
+function addValue(){
+      var textToAdd  = document.getElementById("sub").value;
+      var x	 = document.getElementById("mySelect");
+      var option = document.createElement("option");
+      option.text = textToAdd;
+      x.add(option);}
+
+</script>
+</htmL>

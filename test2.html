@@ -1,0 +1,77 @@
+<htmL>
+    <head></head>
+    <body>
+        <h1>***Subjects:::</h1>
+        <input type="text"  id="sub" placeholder="Enter to add" />
+        <button id="addColor" onclick="addValue()">Add</button>
+        <button id="removeAll" onclick="removeaAll()">Remove All</button>
+        <br><br>
+        <select id="mySelect" name="mySelect" onchange="disableAll()">
+            <option disabled id="opt">Select subject</option>
+            <option value="Maths" id="opt1">Maths</option>
+            <option value="Chemistry" id="opt2">Chemistry</option>
+            <option value="Physics" id="opt3">Physics</option>
+            <option value="Hindi" id="opt4">Hindi</option>
+          </select>
+          <p id="mac">ifubisdbffd</p>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+// show
+var showWhat = () => {
+    var el = document.getElementById("mySelect").selectedIndex;
+    alert("you selected : "+document.getElementsByTagName("option")[el].value);
+}
+
+
+var getSiblingzz = function (elem) {
+var siblings = [];
+var sibling = elem.parentNode.firstChild;
+while (sibling) {
+    if (sibling.nodeType === 1 && sibling !== elem) {
+        siblings.push(sibling);}
+    sibling = sibling.nextSibling;}
+return siblings;
+};
+
+
+var disableAll = () => {
+    showWhat();
+    var el = document.getElementById("mySelect").selectedIndex
+    var sib = allgetValue(document.getElementsByTagName("option"));
+    for(let i=0;i<sib.length;i++){
+        if(i!==el){
+            sib[i].setAttribute('disabled',true);
+        }
+    }
+}
+
+
+var allgetValue = function (elem) {
+var allval = [];
+for (var i=0, max=elem.length; i < max; i++) {
+    allval.push(elem[i]);
+    console.log('All :',elem[i].value);
+}
+return allval;
+};
+  
+// to remove all
+var removeaAll=()=>{
+    document.getElementById("mySelect").innerHTML="";
+}
+
+
+ // to add
+ var addValue=()=>{
+    var textToAdd  = document.getElementById("sub").value;
+    var x	 = document.getElementById("mySelect");
+    var option = document.createElement("option");
+    option.text = textToAdd;
+    x.add(option);}
+
+// first to be selected
+document.getElementById("mySelect").value = document.getElementById("mySelect")[1].value;
+
+</script>
+</htmL>
